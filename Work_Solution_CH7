@@ -1,0 +1,182 @@
+//7.13
+
+//3
+#include <iostream>
+using namespace std;
+struct box
+{
+    char maker[40];
+    float height;
+    float width;
+    float length;
+    float volume;
+};
+
+void box_value(const box x);
+void box_product(const box * p);
+
+int main()
+{
+    box user;
+    cout << "Do you want to make a box??" << endl;
+    cout << "Let's make a box!!" << endl;
+    cout << "Enter your the following:\nname\nwidth\nelength" << endl;
+    cin >> user.maker >> user.height >> user.width >> user.length;
+    box_product(&user);
+    box_value(user);
+    return 0;
+    
+    
+}
+
+
+
+void box_value(const box x)
+{
+    cout << "INSIDE BOX" << endl;
+    cout << "maker: " << x.maker << endl;
+    cout << "height: " << x.height << endl;
+    cout << "width: " << x.width << endl;
+    cout << "length: " << x.length << endl;
+    cout << "volume: " << x.volume << endl;
+}
+
+void box_product(const box * p)
+{
+    p->volume = p->height * p->width * p->length;
+}
+
+
+#include <iostream>
+using namespace std;
+long double probability(unsigned numbers, unsigned picks);
+int main()
+{
+    double total1, choices1;
+    double total2, choices2;
+    
+    while (1)
+    {
+    
+        cout << "Enter the total number of choices on the game card and\n"
+            "the total number of picks allowed in the FIRST section\n";
+        cin >> total1 >> choices1;
+        cout << "You have one chance in ";
+        cout << probability(total1, choices1);
+        cout << " of winning.\n";
+        cout << "Enter the total number of choices on the game card and\n"
+        "the total number of picks allowed in the SECOND section\n\n";
+        cin >> total2 >> choices2;
+        cout << "You have one chance in ";
+        cout << probability(total2, choices2);
+        cout << " of winning.\n";
+        cout << "Therefore your total chance of winning is "
+        << probability(total1, choices1) * probability(total2, choices2) << endl;
+        cout << "Continue or quit with 'q'" << endl;
+        if (cin.get() == 'q')
+            break;
+        else
+            continue;
+    }
+}
+
+long double probability(unsigned numbers, unsigned picks)
+{
+    long double result = 1.0;
+    long double n;
+    unsigned p;
+    
+    for (n = numbers, p = picks; p > 0; n--, p--)
+        result = result * n / p;
+    return result;
+}
+
+
+
+
+//5
+//this is unsolved
+#include <iostream>
+using namespace std;
+int factorial_method1(int n);
+int factorial_method2(int n);
+int main()
+{
+    int m1, m2;
+    cout << "Factorial methods contest!!\n";
+    cout << "Enter your value for method1\n";
+    cin >> m1;
+    cout << "The result of method1 is " << factorial_method1(m1);
+    cout << "Enter your value for method2\n";
+    cin >> m2;
+    cout << "The result of method2 is " << factorial_method2(m2);
+    cout << "Testing Done\n Bye!";
+    return 0;
+    
+}
+
+int factorial_method2(int n)
+{
+    if (n != 1)
+        return n * factorial_method2(n-1);
+    
+};
+
+int factorial_method1(int n)
+{
+    for (int result = 1; n > 0; n--)
+    {
+        result *= n;
+        if (n == 0)
+            return result;
+    }
+    return 0;
+}
+
+
+//6
+#include <iostream>
+using namespace std;
+int Fill_array(double ar[], int size);
+void Show_array(double ar[], int size);
+void Reverse_array(double ar[], int size);
+
+int main()
+{
+    double ar[10];
+    cout << "Test functions!!\n";
+    Fill_array(ar,10);
+    Show_array(ar, 10);
+    Reverse_array(ar, 10);
+    Show_array(ar,10);
+    return 0;
+}
+
+int Fill_array(double ar[], int size)
+{
+    cout << "Fill an array with double type" << endl;
+    int i;
+    for (int i = 0; i < size; i++)
+        cin >> ar[i];
+    return i;
+}
+
+void Show_array(double ar[], int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << "The " << i+1 << " in array: " << ar[i] << endl;
+}
+
+void Reverse_array(double ar[], int size)
+{
+    int i = 0;
+    int temp;
+    while (i != size/2)
+    {
+        temp = ar[i];
+        ar[i] = ar[size -i-1];
+        ar[size-i-1] = temp;
+        i++;
+    }
+}
+
